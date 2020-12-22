@@ -1,0 +1,28 @@
+//salting + hashing using bcrypt
+//you can use passport for using bcrypt
+// const bcrypt = require('bcrypt');
+// const saltRounds = 10;
+
+bcrypt.hash(req.body.password, saltRounds, function(err, hash){
+  const user = new User({
+    email: req.body.username,
+    password: hash
+  });
+
+bcrypt.compare(password, foundUser.password, function(err, isEqual){
+
+  if(isEqual){
+    res.render('secrets');
+  }
+  else{
+    res.send('Wrong Password');
+  }
+});
+
+//hashing using md5
+// const md5 = require('md5');
+
+//encrypting using mongoose encryption
+
+//const encrypt = require('mongoose-encryption');
+// userSchema.plugin(encrypt, {secret: process.env.SECRET, encryptedFields: ['password']})
